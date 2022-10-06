@@ -1,9 +1,4 @@
-<?php
-use App\Models\category ;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
- $categories = Category::select('id',
- 'name_' . LaravelLocalization::getCurrentLocale() . ' as name')->get();
- ?>
+
  <div class="site-navbar bg-white py-2">
 
       <div class="search-wrap">
@@ -19,7 +14,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="{{route('products.index')}}" class="js-logo-clone">{{__('frontend.mavi')}}</a>
+              <a href="{{route('home')}}" class="js-logo-clone">{{__('frontend.mavi')}}</a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
@@ -34,7 +29,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
                   </ul>
                 </li>
                 <li><a href="{{route('shop.index')}}">{{__('frontend.shop')}}</a></li>
-                {{-- <li><a href="{{route('orders.show',$order)}}">My Cart</a></li> --}}
+                <li><a href="{{route('my-cart')}}">My Cart</a></li>
                 <li><a href="{{route('contacts.create')}}">{{__('frontend.contact')}}</a></li>
                 <li><a href="{{route('about-us.index')}}">{{__('frontend.about us')}}</a></li>
                 <li class="has-children active">{{__('frontend.lang')}}

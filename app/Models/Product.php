@@ -15,7 +15,7 @@ public function category()
 
 public function users()
 {
-	return $this->belongsToMany(User::class,'orders')->withTimestamps();
+	return $this->belongsToMany(User::class,'product_user')->withTimestamps();
 }
 
 

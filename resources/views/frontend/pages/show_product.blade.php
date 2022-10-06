@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="border">
-              <img src="{{asset('storage/'.$product->image)}}" alt="Image" class="img-fluid">
+              <img src="{{asset('images/products/'.$product->image)}}" alt="Image" class="img-fluid">
             </div>
           </div>
           <div class="col-md-6">
@@ -16,10 +16,10 @@
             <!-- <p >Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p> -->
             <p><strong class="text-primary h4">${{$product->price}}</strong></p>
 
-<form method="post" action="{{route('orders.store')}}" >
+<form method="post" action="{{route('product-user.store')}}" >
 
 
-<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+
 
 <input type="hidden" name="product_id" value="{{$product->id}}">
 
@@ -37,6 +37,8 @@
                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xl" name="size" value="4"></span> <span class="d-inline-block text-black"> Extra Large</span>
               </label>
             </div>
+            <div>{{ $errors->first('size') }}</div>
+
             <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 120px;">
               <div class="input-group-prepend">
@@ -47,6 +49,7 @@
                 <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
               </div>
             </div>
+            <div>{{ $errors->first('amount') }}</div>
 
             </div>
             <p><input type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" value="Add To Cart"></p>

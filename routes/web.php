@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ViewerController;
+use App\Models\category;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
+use Illuminate\Support\Facades\View ;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,13 +37,30 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('admins','AdminController')->middleware('auth:admin');
 
 Route::resource('categories','CategoryController');
-Route::resource('products','ProductController')->middleware('auth:admin');
+Route::resource('products','ProductController');
 
                   //web routes
- 
-Route::resource('shop' , 'ShopController');
-Route::resource('orders' , 'OrderController');
 
+Route::get('my-cart' ,'ProductUserController@myCart')->name('my-cart');
+Route::post('order/{order}', 'ProductUserController@deleteOrder')->name('order.destroy');
+Route::post('neworder/store', 'ProductUserController@makeOrder')->name('product-user.store');
+Route::get('all-orders' , 'ProductUserController@getAllOrders')->name('all-orders');
+//Route::resource('orders' , 'ProductUserController');
+ 
+
+                    // Share data to multiple views
+View::composer(['dashboard.*'], function ($view) {
+   $admin = auth()->guard('admin')->user();
+   $view->with('admin' , $admin);
+});
+
+View::composer(['frontend.*'], function ($view) {
+   $categories = Category::select('id',
+   'name_' . LaravelLocalization::getCurrentLocale() . ' as name')->get();
+   $view->with('categories' , $categories);
+});
+
+Route::resource('shop' , 'ShopController');
 Route::resource('contacts' , 'ContactController');
 
 Route::resource('about-us' , 'AboutUsController');

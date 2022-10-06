@@ -1,5 +1,6 @@
 @extends('layouts.admin_layout')
 @section('title' ,'Edit Site Setting')
+@section('page_title' , 'Site Settings')
 
 @section('content')
 

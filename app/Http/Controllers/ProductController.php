@@ -18,7 +18,7 @@ class ProductController extends Controller
   
          public function __construct()
   {
-    $this->middleware('auth:admin');
+    $this->middleware('auth:admin')->except('show');
   }
 
     public function index()
@@ -61,7 +61,7 @@ class ProductController extends Controller
     }
     public function show(Product $product)
     {
-       return view('dashboard.pages.products.show_product' ,compact('product'));
+       return view('frontend.pages.show_product' ,compact('product'));
     }
 
         public function edit(Product $product)
