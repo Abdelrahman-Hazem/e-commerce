@@ -24,12 +24,12 @@
                   <a href="index.html">{{__('frontend.collection')}}</a>
                   <ul class="dropdown">
                     @foreach ($categories as $category)
-                    <li><a href="{{route('categories.show',$category)}}">{{$category->name}}</a></li>
+                    <li><a href="{{route('category.products',['category_id' => $category->id])}}">{{$category->name}}</a></li>
                     @endforeach
                   </ul>
                 </li>
                 <li><a href="{{route('shop.index')}}">{{__('frontend.shop')}}</a></li>
-                <li><a href="{{route('my-cart')}}">My Cart</a></li>
+                <li><a href="{{route('my-cart')}}">{{__('frontend.my_cart')}}</a></li>
                 <li><a href="{{route('contacts.create')}}">{{__('frontend.contact')}}</a></li>
                 <li><a href="{{route('about-us.index')}}">{{__('frontend.about us')}}</a></li>
                 <li class="has-children active">{{__('frontend.lang')}}

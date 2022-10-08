@@ -10,7 +10,7 @@ class category extends Model
 
     public function products()
     {
-    	return $this->hasMany(\App\Product::class);
+    	return $this->hasMany('App\Models\Product' ,'category_id');
     }
 
    

@@ -11,8 +11,8 @@
         <div class="row align-items-center">
           <div class="col-lg-5 text-left">
             <div class="featured-hero-product w-100 text-left">
-              <h1 class="mb-2">About</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint autem neque ad voluptas quia quidem odio sed officia.</p>
+              <h1 class="mb-2">{{__('frontend.about')}}</h1>
+              <p>{{$settings->about_us}}</p>
             </div>  
           </div>
          

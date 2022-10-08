@@ -4,19 +4,19 @@
           <div class="col-md-6 col-lg-6 mb-4 mb-lg-0">
             
             <div class="block-7">
-              <h3 class="footer-heading mb-4">About Us</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quae reiciendis distinctio voluptates sed dolorum excepturi iure eaque, aut unde.</p>
+              <h3 class="footer-heading mb-4">{{__('frontend.about us')}}</h3>
+              <p>{{$settings->about_us}}</p>
             </div>
           </div>
          
           
           <div class="col-md-6 col-lg-6">
             <div class="block-5 mb-5">
-              <h3 class="footer-heading mb-4">Contact Info</h3>
+              <h3 class="footer-heading mb-4">{{__('frontend.contact info')}}</h3>
               <ul class="list-unstyled">
-                <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
+                <li class="address">{{$settings->address}}</li>
+                <li class="phone"><a href="tel://23923929210">+2 {{$settings->phone}}</a></li>
+                <li class="email">{{$settings->email}}</li>
               </ul>
             </div>
 

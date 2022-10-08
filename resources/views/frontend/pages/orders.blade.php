@@ -11,12 +11,12 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-total">Total</th>
-                    <th class="product-remove">Remove</th>
+                    <th class="product-thumbnail">{{__('frontend.image')}}</th>
+                    <th class="product-name">{{__('frontend.product')}}</th>
+                    <th class="product-price">{{__('frontend.price')}}</th>
+                    <th class="product-quantity">{{__('frontend.quantity')}}</th>
+                    <th class="product-total">{{__('frontend.total')}}</th>
+                    <th class="product-remove">{{__('frontend.remove')}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -38,15 +38,14 @@
                       {{-- <button type="submit" class="btn btn-primary height-auto btn-sm">X</button> --}}
                       @csrf
                     </form></td>
-                  </tr>
- @endforeach                 
- @endif                 
+                  </tr>                
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-
+@endforeach
+@endif
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
@@ -54,7 +53,7 @@
                 <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
               </div> -->
               <div class="col-md-6">
-                <a href="{{route('shop.index')}}" class="btn btn-primary btn-sm btn-block">Continue Shopping</a>
+                <a href="{{route('shop.index')}}" class="btn btn-primary btn-sm btn-block">{{__('frontend.Continue Shopping')}}</a>
               </div>
             </div>
             <!-- <div class="row">
@@ -75,7 +74,7 @@
               <div class="col-md-7">
                 <div class="row">
                   <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                    <h3 class="text-black h4 text-uppercase">{{__('frontend.Cart Totals')}}</h3>
                   </div>
                 </div>
                <!--  <div class="row mb-3">
@@ -88,7 +87,7 @@
                 </div> -->
                 <div class="row mb-5">
                   <div class="col-md-6">
-                    <span class="text-black">Total</span>
+                    <span class="text-black">{{__('frontend.total')}}</span>
                   </div>
                   <div class="col-md-6 text-right">
                     <strong class="text-black">${{($totalPrice)}}</strong>

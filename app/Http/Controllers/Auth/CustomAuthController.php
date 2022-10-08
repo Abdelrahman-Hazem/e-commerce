@@ -14,11 +14,11 @@ class CustomAuthController extends Controller
     }
     public function admin()
     {
+        if(Auth::guard('admin')->check()){
         return view('dashboard.pages.index');
-    }
-    public function adminLogin()
-    {
+      } else {
         return view('auth.admin_login');
+      }
     }
     public function checkAdminLogin(Request $request)
     {

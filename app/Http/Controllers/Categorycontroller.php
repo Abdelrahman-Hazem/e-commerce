@@ -17,21 +17,7 @@ class Categorycontroller extends Controller
 
    
 
-public function show(Category $category)
-{
-    $products = DB::table('products')
-    ->where('category_id','=',$category->id)
-    ->paginate(1);
-    return view('frontend.pages.category',compact('products'));
 
-
-    // $products = Product::
-    // where('category_id','=',$category->id)
-    // ->paginate(1);
-    // return view('pages.web_pages.category',compact('products'));
-
-
-}
 
   
   }

@@ -68,7 +68,7 @@ class ProductUserController extends Controller
      $user =User::find($userId);
      $user ->products()->attach(
        $request->product_id ,['amount' =>$request->amount ,'size' =>$request->size]);
-      return redirect('my-cart');
+      return redirect('thankyou');
      }else {
       return redirect('login');
      }
