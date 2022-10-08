@@ -19,6 +19,7 @@ class CreateProductUser extends Migration
             $table->unsignedBigInteger('product_id'); 
             $table->integer('amount');
             $table->integer('size');
+            $table->integer('status');
             $table->timestamps();
         });
     }

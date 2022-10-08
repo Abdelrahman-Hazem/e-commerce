@@ -19,7 +19,6 @@ class ProductSeeder extends Seeder
         $newproduct->serial_number = "100022";
         $newproduct->stock = "20";
         $newproduct->category_id = "1";
-        $newproduct->rate = "4";
         $newproduct->description = "New shoes";
         $newproduct-> save();
 
@@ -30,7 +29,6 @@ class ProductSeeder extends Seeder
         $newproduct->serial_number = "100022";
         $newproduct->stock = "20";
         $newproduct->category_id = "2";
-        $newproduct->rate = "4";
         $newproduct->description = "New Bags";
         $newproduct-> save();
 
@@ -41,7 +39,6 @@ class ProductSeeder extends Seeder
         $newproduct->serial_number = "100022";
         $newproduct->stock = "20";
         $newproduct->category_id = "1";
-        $newproduct->rate = "4";
         $newproduct->description = "New Belt";
         $newproduct-> save();
     }

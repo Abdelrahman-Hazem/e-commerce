@@ -25,32 +25,38 @@ use Illuminate\Support\Facades\Auth;
 
 // Routes = api
 // All routes or api here must be authenticated by api 
-Route::group(['middleware' =>['api','changeLanguage'] ,'namespace'=>'Api'],function () {
-    Route::post('get-main-categories','CategoriesController@index');
-    Route::post('get-category-byId','CategoriesController@getCategoryById');
-    Route::post('change-category-status','CategoriesController@changeStatus');
-});
+// Route::group(['middleware' =>['api','changeLanguage'] ,'namespace'=>'Api'],function () {
+//     Route::post('get-main-categories','CategoriesController@index');
+//     Route::post('get-category-byId','CategoriesController@getCategoryById');
+//     Route::post('change-category-status','CategoriesController@changeStatus');
+// });
 
-Route::group(['middleware' =>['api','checkPassword','changeLanguage','CheckAdminToken'] ,'namespace'=>'Api'],function () {
+// Route::group(['middleware' =>['api','checkPassword','changeLanguage','CheckAdminToken'] ,'namespace'=>'Api'],function () {
 
-Route::get('offers','CategoriesController@index');
-});
+// Route::get('offers','CategoriesController@index');
+// });
 
-Route::group(['prefix' =>'admin' ,'namespace'=>'Api\Admin'],function () {
+// Route::group(['prefix' =>'admin' ,'namespace'=>'Api\Admin'],function () {
 
-    Route::post('login','AuthController@login');
-    Route::post('logout','AuthController@logout')->middleware('auth.guard:admin-api');
-    });
+//     Route::post('login','AuthController@login');
+//     Route::post('logout','AuthController@logout')->middleware('auth.guard:admin-api');
+//     });
     
-Route::group(['prefix' =>'user' ,'middleware'=>'auth.guard:user-api'],function () {
+// Route::group(['prefix' =>'user' ,'middleware'=>'auth.guard:user-api'],function () {
 
-    Route::post('profile',function(){
-        // return "only authenticated user can reach";
-        return Auth::user();
-    });
-});
+//     Route::post('profile',function(){
+//         // return "only authenticated user can reach";
+//         return Auth::user();
+//     });
+// });
 
-Route::group(['prefix' =>'user' , 'namespace'=>'Api\User'],function () {
+// Route::group(['prefix' =>'user' , 'namespace'=>'Api\User'],function () {
 
-    Route::post('login','AuthController@login');
-});
+//     Route::post('login','AuthController@login');
+// });
+
+Route::group(['prefix' => LaravelLocalization::setLocale() ,  'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
+ {
+    Route::apiResource();
+ 
+ });

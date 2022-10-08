@@ -24,8 +24,6 @@ class CreateProductsTable extends Migration
             $table->integer('stock');
             
             $table->unsignedBigInteger('category_id');
-            
-            $table->double('rate')->nullable();
             $table->text('description');
             
             $table->timestamps();

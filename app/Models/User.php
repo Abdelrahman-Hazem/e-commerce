@@ -41,7 +41,7 @@ class User extends Authenticatable implements JWTSubject
     public function products()
     {
         return $this->belongsToMany(Product::class,'product_user')->withTimestamps()
-        ->withPivot(['amount' ,'size']);
+        ->withPivot(['amount' ,'size' ,'status']);
     }
 
      /**

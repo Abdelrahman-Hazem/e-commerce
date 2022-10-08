@@ -21,7 +21,7 @@ class ProductUserController extends Controller
       ->join('users' , 'users.id' , '=' , 'product_user.user_id')
       ->select( 'price' ,'products.image','products.name As product_name' ,
                 'users.name As user_name' ,'phone' ,'address',
-                'product_user.created_at' ,
+                'product_user.created_at' , 'status'
       
       )->get();
       return view('dashboard.pages.orders.index' ,compact('orders'));
@@ -67,7 +67,8 @@ class ProductUserController extends Controller
      $userId = auth()->guard('web')->id(); 
      $user =User::find($userId);
      $user ->products()->attach(
-       $request->product_id ,['amount' =>$request->amount ,'size' =>$request->size]);
+       $request->product_id ,['amount' =>$request->amount ,'size' =>$request->size ,
+       'status' => 0]);
       return redirect('thankyou');
      }else {
       return redirect('login');

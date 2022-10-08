@@ -17,6 +17,7 @@
 			</tr>
 		</thead>
      <tbody>
+		
 	@foreach($orders as $order)
 	 <tr>
 		<td><img class="img-fluid" width="150" height="200" alt="Image" src="{{asset('images/products/'.$order->image)}}"></td> 
@@ -27,7 +28,8 @@
 		<td>{{$order->created_at}}</td>
 		 <td> 
                     <!-- Edit button -->
-			 <a  href="" class="btn btn-primary">Order Detalies</a> 
+					
+			 <a  href="" class="btn btn-primary">{{$order->status}}</a> 
                         
                         <!-- Delete button -->
 {{-- <form method="post" action="{{route('products.destroy',['product'=>$product->id])}}">
