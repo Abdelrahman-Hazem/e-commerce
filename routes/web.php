@@ -4,7 +4,6 @@ use Aws\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ViewerController;
 use App\Models\category;
 use App\Models\Setting;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -19,43 +18,42 @@ use Illuminate\Support\Facades\View ;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix' => LaravelLocalization::setLocale() ,  'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
+Route::group(['prefix' => LaravelLocalization::setLocale() ,
+  'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],
+   function()
  {
-
-Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
-
-                // Admin Login Routes  
+   ####################### Admin Login Routes############################### 
  Route::group(['namespace'=>'Auth'] , function(){
     Route::get('admin','CustomAuthController@admin')->name('admin');
-    Route::post('admin/login','CustomAuthController@checkAdminLogin')->name('save.admin.login');
-    
- });               
-
-
-                 //admin routes
- Route::resource('settings' ,'SettingController');                
+    Route::post('admin/login','CustomAuthController@checkAdminLogin')->name('save.admin.login'); 
+ });     
 //Route::resource('admins','AdminController')->middleware('auth:admin');
 
+################################## Website Routes #######################
+Auth::routes();
+Route::get('/', 'HomeController@index')->name('home');
+ Route::resource('settings' ,'SettingController');                
 Route::resource('categories','CategoryController');
 Route::resource('products','ProductController');
-
-                  //web routes
 Route::view('thankyou', 'frontend.pages.thankyou');
 Route::get('my-cart' ,'ProductUserController@myCart')->name('my-cart');
 Route::post('order/{order}', 'ProductUserController@deleteOrder')->name('order.destroy');
 Route::post('neworder/store', 'ProductUserController@makeOrder')->name('product-user.store');
-Route::get('all-orders' , 'ProductUserController@getAllOrders')->name('all-orders');
-//Route::resource('orders' , 'ProductUserController');
- 
+Route::get('all-orders' , 'ProductUserController@getAllOrders')->name('all-orders'); 
+Route::get('category-products/{category_id}' , 'ShopController@GetProductsByCategory')
+->name('category.products');
+Route::resource('shop' , 'ShopController');
+Route::resource('contacts' , 'ContactController');
+Route::resource('about-us' , 'AboutUsController');
 
-                    // Share data to multiple views
+
+############################ Share data to multiple views #######################
 View::composer(['dashboard.*'], function ($view) {
    $admin = auth()->guard('admin')->user();
    $view->with('admin' , $admin);
 });
 
-View::composer(['frontend.*'], function ($view) {
+View::composer(['*'], function ($view) {
    $categories = Category::select('id',
    'name_' . LaravelLocalization::getCurrentLocale() . ' as name')->get();
    $view->with('categories' , $categories);
@@ -73,13 +71,4 @@ View::composer(['frontend.*'], function ($view) {
    $view->with('settings' , $settings);
 });
 
-Route::get('category-products/{category_id}' , 'ShopController@GetProductsByCategory')
-->name('category.products');
-Route::resource('shop' , 'ShopController');
-Route::resource('contacts' , 'ContactController');
-
-Route::resource('about-us' , 'AboutUsController');
-
-              //Event&Listeners
-Route::get('/viewers', 'ViewerController@getNumberOfViewers');
 });

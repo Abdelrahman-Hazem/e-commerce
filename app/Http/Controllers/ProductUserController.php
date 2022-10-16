@@ -92,3 +92,12 @@ class ProductUserController extends Controller
       // get the user 's orders
         //return $orders = User::with('products')->find('id of the user');
     }
+
+
+     // $advertisers =Advertiser::all();
+        // foreach($advertisers as $advertiser)
+        // $advertiserAds = $advertiser->ads;
+        // foreach($advertiserAds as $advertiserAd)
+        //   $start_date = $advertiserAd->start_date ;
+        
+ 

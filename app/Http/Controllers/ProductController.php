@@ -16,10 +16,10 @@ class ProductController extends Controller
   use SaveImageTrait;
 
   
-         public function __construct()
-  {
-    $this->middleware('auth:admin')->except('show');
-  }
+  //        public function __construct()
+  // {
+  //   $this->middleware('auth:admin')->except('show');
+  // }
 
     public function index()
        {
@@ -29,8 +29,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
-        return view('dashboard.pages.products.create_products' ,compact('categories'));
+        return view('dashboard.pages.products.create_products');
     }
 
  
