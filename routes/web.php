@@ -18,6 +18,15 @@ use Illuminate\Support\Facades\View ;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('pay','FatoorahController@payOrder')->middleware('auth:web');
+Route::get('callback',function(){
+   return "success";
+});
+Route::get('error',function(){
+   return "error";
+});
+
+
 Route::group(['prefix' => LaravelLocalization::setLocale() ,
   'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]],
    function()
@@ -27,24 +36,28 @@ Route::group(['prefix' => LaravelLocalization::setLocale() ,
     Route::get('admin','CustomAuthController@admin')->name('admin');
     Route::post('admin/login','CustomAuthController@checkAdminLogin')->name('save.admin.login'); 
  });     
-//Route::resource('admins','AdminController')->middleware('auth:admin');
-
-################################## Website Routes #######################
-Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
- Route::resource('settings' ,'SettingController');                
-Route::resource('categories','CategoryController');
-Route::resource('products','ProductController');
-Route::view('thankyou', 'frontend.pages.thankyou');
-Route::get('my-cart' ,'ProductUserController@myCart')->name('my-cart');
+Route::resource('admins','AdminController');
 Route::post('order/{order}', 'ProductUserController@deleteOrder')->name('order.destroy');
 Route::post('neworder/store', 'ProductUserController@makeOrder')->name('product-user.store');
 Route::get('all-orders' , 'ProductUserController@getAllOrders')->name('all-orders'); 
 Route::get('category-products/{category_id}' , 'ShopController@GetProductsByCategory')
-->name('category.products');
+->name('category.products'); 
+Route::resource('settings' ,'SettingController');
+
+Route::group(['middleware'=>'can:products'],function(){
+   Route::resource('products','ProductController');
+ });
+################################## Website Routes #######################
+Auth::routes();
+Route::get('/', 'HomeController@index')->name('home');
+Route::resource('categories','CategoryController');
+Route::view('thankyou', 'frontend.pages.thankyou');
+Route::get('my-cart' ,'ProductUserController@myCart')->name('my-cart');
+
 Route::resource('shop' , 'ShopController');
 Route::resource('contacts' , 'ContactController');
 Route::resource('about-us' , 'AboutUsController');
+Route::resource('roles' , 'RoleController');
 
 
 ############################ Share data to multiple views #######################

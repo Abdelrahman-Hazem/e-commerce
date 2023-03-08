@@ -2,7 +2,7 @@
 @section('title' ,'Admin Panel ')
 
 	
-	<script>
+	{{-- <script>
 		window.onload = function () {
 	var chart1 = document.getElementById("line-chart").getContext("2d");
 	window.myLine = new Chart(chart1).Line(lineChartData, {
@@ -20,5 +20,5 @@
 console.log(myJsonObject);
 console.log(typeof (myJsonObject));
 
-	</script>
+	</script> --}}
 	

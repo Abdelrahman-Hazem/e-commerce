@@ -1,5 +1,6 @@
 <?php
-use vendor\laravel\framework\src\Illuminate\Container\Container ;
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\Setting;
 class SettingSeeder extends Seeder

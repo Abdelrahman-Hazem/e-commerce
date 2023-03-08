@@ -19,7 +19,7 @@
    @foreach($products as $product)
       <div class="col-6 col-md-6 col-lg-6">
         <a href="{{route('products.show',['product'=>$product->id])}}" class="item">
-          <img src="{{asset('images/products/'.$product->image)}}" alt="Image" class="img-fluid">
+          <img src="{{ URL::TO('/') }}{{'/public/images/products/'.$product->image}}" alt="Image" class="img-fluid">
           <div class="item-info">
             <h3>{{$product->name}}</h3>
             <span class="collection d-block">{{$product->description}}</span>

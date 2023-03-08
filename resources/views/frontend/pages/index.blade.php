@@ -14,7 +14,7 @@
             </div>  
           </div>
           <div class="col-lg-7 align-self-end text-center text-lg-right">
-            <img src="{{asset('assets/web_assets/images/model_5.png')}}" alt="Image" class="img-fluid img-1">
+            <img src="{{ URL::TO('/') }}/public/assets/web_assets/images/model_5.png" alt="Image" class="img-fluid img-1">
           </div>
           
         </div>

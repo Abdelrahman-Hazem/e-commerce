@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\Admin\AuthController;
 use App\Http\Middleware\CheckPassword;
 use App\Http\Middleware\ChangeLanguage;
 use Illuminate\Support\Facades\Auth;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\View ;
 use App\Models\category;
 use App\Models\Setting;
@@ -27,15 +26,16 @@ use App\Models\Setting;
 // });
 
 
-// Routes = api
-// All routes or api here must be authenticated by api 
+//Routes = api
+//All routes or api here must be authenticated by api 
 Route::group(['middleware' =>['api','changeLanguage'] ,'namespace'=>'Api'],function () {
     Route::post('get-main-categories','CategoriesController@index');
     Route::post('get-category-byId','CategoriesController@getCategoryById');
     Route::post('change-category-status','CategoriesController@changeStatus');
 });
 
-Route::group(['middleware' =>['api','checkPassword','changeLanguage','CheckAdminToken'] ,'namespace'=>'Api'],function () {
+Route::group(['middleware' =>['api','checkPassword','changeLanguage','CheckAdminToken']
+ ,'namespace'=>'Api'],function () {
 
 Route::get('offers','CategoriesController@index');
 });
@@ -59,13 +59,12 @@ Route::group(['prefix' =>'user' , 'namespace'=>'Api\User'],function () {
     Route::post('login','AuthController@login');
 });
 
-Route::group([ 'namespace'=>'Api','prefix' => LaravelLocalization::setLocale() , 
- 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'] ],
+Route::group(['namespace'=>'Api' ],
   function()
  {
-    Route::apiResource('settings' ,'SettingController')->only(['edit','update']);
-    Route::apiResource('categories','CategoryController');
     Route::apiResource('products','ProductController');
+    Route::apiResource('settings' ,'SettingController');
+    Route::apiResource('categories','CategoryController');
     Route::view('thankyou', 'frontend.pages.thankyou');
     ############### all Product user routes#########
     Route::get('my-cart' ,'ProductUserController@myCart')->name('my-cart');
@@ -79,22 +78,4 @@ Route::group([ 'namespace'=>'Api','prefix' => LaravelLocalization::setLocale() ,
     ###############################################
     Route::apiResource('contacts' , 'ContactController');
     Route::apiResource('about-us' , 'AboutUsController');
- });
-
- View::composer(['*'], function ($view) {
-    $categories = Category::select('id',
-    'name_' . LaravelLocalization::getCurrentLocale() . ' as name')->get();
-    $view->with('categories' , $categories);
- });
- 
- View::composer(['frontend.*'], function ($view) {
-    $settings = Setting::select('id',
-    'site_name_' . LaravelLocalization::getCurrentLocale() . ' as site_name' ,
-    'site_title_' . LaravelLocalization::getCurrentLocale() . ' as site_title',
-    'title_desc_' . LaravelLocalization::getCurrentLocale() . ' as title_desc',
-    'about_us_' . LaravelLocalization::getCurrentLocale() . ' as about_us',
-    'address_' . LaravelLocalization::getCurrentLocale() . ' as address',
-    'phone_' . LaravelLocalization::getCurrentLocale() . ' as phone',
-      'email')->first();
-    $view->with('settings' , $settings);
  });

@@ -27,7 +27,17 @@
   <div>{{ $errors->first('password') }}</div>
 
   <br>
-
+  <div class="form-group">
+    <label >Role</label>
+    <select name="role_id" value="{{ old('role_id')}}" class="form-control" >
+      <option selected disabled >Select</option>
+      <option value="1">General Manager</option>
+      <option value="2">Manager</option>
+      <option value="3">Admin</option>
+    </select>
+  </div>
+  <div>{{ $errors->first('role_id') }}</div>
+<br>
   <div class="form-groub">
   <input type="file" name="image" placeholder="image" class="form-control" value="{{old('image')??$admin->image}}">
   </div>

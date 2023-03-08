@@ -1,3 +1,4 @@
+        $newadmin->image = "admin.jpg";
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<div class="profile-sidebar">
 			<div class="profile-userpic">
@@ -18,6 +19,8 @@
 		<ul class="nav menu">
 			<li><a href="{{route('products.index')}}"><em class="fa fa-calendar">&nbsp;</em> Product</a></li>
 			<li><a href="{{route('all-orders')}}"><em class="fa fa-calendar">&nbsp;</em> Orders</a></li>
+			<li><a href="{{route('admins.index')}}"><em class="fa fa-calendar">&nbsp;</em> Admins</a></li>
+			<li><a href="{{route('roles.index')}}"><em class="fa fa-calendar">&nbsp;</em> Roles</a></li>
 		
 			<li><a href="{{route('settings.edit' ,['setting' =>1])}}"><em class="fa fa-toggle-off">&nbsp;</em> {{__('dashboard.site setting')}}</a></li>
 			{{-- <li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>

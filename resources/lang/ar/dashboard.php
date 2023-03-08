@@ -1,6 +1,7 @@
 <?php 
 return[
-
+    'orders' => 'الاوردرات',
+    'products' => 'المنتجات',
     'site setting' => 'اعدادات الموقع',
     'dashboard setting' => 'اعدادات لوحة التحكم',
 '' => '',
